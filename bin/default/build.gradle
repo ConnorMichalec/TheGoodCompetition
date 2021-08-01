@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+    test {
+        java { 
+            srcDir 'src/main'
+        }
+        resources { 
+            srcDir 'resources'
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    implementation "org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT"   
+}
+
+tasks.register("build_connor", Copy) {
+    dependsOn tasks.build_connor
+    
+    from jar.archiveFile
+    into "/home/connor/Documents/TestMinecraftServer_12.2/plugins"
+}
+
+group = 'michalec.connor.TheGoodCompetition'
+version = "0.0.0-ALPHA-SNAPSHOT"
+sourceCompatibility = 1.8
+
+configure(build_connor) {
+    group = "Tools"
+    description = "Build and export jar"
+}
