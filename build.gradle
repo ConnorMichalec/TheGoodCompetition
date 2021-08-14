@@ -18,7 +18,7 @@ sourceSets {
     }
     test {
         java { 
-            srcDir 'src/main'
+            srcDir 'src/test'
         }
         resources { 
             srcDir 'resources'
@@ -32,7 +32,7 @@ dependencies {
 }
 
 tasks.register("build_connor", Copy) {
-    dependsOn tasks.build_connor
+    dependsOn tasks.build
     
     from jar.archiveFile
     into "/home/connor/Documents/TestMinecraftServer_12.2/plugins"

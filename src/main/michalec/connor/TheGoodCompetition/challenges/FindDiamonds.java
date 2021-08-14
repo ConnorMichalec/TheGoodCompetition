@@ -1,18 +1,17 @@
 package michalec.connor.TheGoodCompetition.challenges;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import michalec.connor.TheGoodCompetition.Challenge;
+import michalec.connor.TheGoodCompetition.TheGoodCompetition;
 
 public class FindDiamonds extends Challenge {
 
 
-    public FindDiamonds(Player registered, JavaPlugin plugin) {
-        super(registered, plugin, "FindDiamonds");
+    public FindDiamonds(TheGoodCompetition plugin) {
+        super(plugin, "FindDiamonds", "Mining diamonds");
     }
 
     @Override
@@ -27,8 +26,9 @@ public class FindDiamonds extends Challenge {
 
     @EventHandler
     public void onDiamondBlockBreak(BlockBreakEvent e) {
-        e.getBlock().getType().equals(Material.DIAMOND_ORE);
-        this.challengeComplete("", e.getPlayer(), this);
+        if(e.getBlock().getType().equals(Material.DIAMOND_ORE)) {
+            this.challengeComplete("s", e.getPlayer(), this);
+        }
     }
 
 
